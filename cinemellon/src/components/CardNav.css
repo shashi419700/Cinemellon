@@ -1,0 +1,104 @@
+.card-nav-toggle {
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 45;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.card-nav-toggle:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.card-nav-toggle:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.card-nav-toggle .hamburger-line {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.2s ease;
+}
+
+.card-nav-toggle .hamburger-line:first-child {
+  transform: translateY(-4px);
+}
+
+.card-nav-toggle .hamburger-line:last-child {
+  transform: translateY(4px);
+}
+
+.card-nav-toggle.open .hamburger-line:first-child {
+  transform: translateY(0) rotate(45deg);
+}
+
+.card-nav-toggle.open .hamburger-line:last-child {
+  transform: translateY(0) rotate(-45deg);
+}
+
+.card-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* A contained popup card, not a full-height docked drawer — anchored to the
+   same vertical center as the toggle button. The mask carves a circular
+   notch out of the right edge at that same center point, so the panel's
+   edge appears to curve around the button rather than sit flush behind it. */
+.card-nav-drawer {
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: min(85vw, 300px);
+  max-height: min(75vh, 580px);
+  z-index: 42;
+  border-radius: 22px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle 32px at 100% 50%, transparent 99%, black 100%);
+  mask-image: radial-gradient(circle 32px at 100% 50%, transparent 99%, black 100%);
+}
+
+.card-nav-content {
+  padding: 1.5rem 1.25rem 1.25rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.card-nav-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card-nav-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-nav-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}

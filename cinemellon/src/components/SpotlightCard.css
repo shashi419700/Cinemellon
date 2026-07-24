@@ -1,0 +1,37 @@
+.card-spotlight {
+  position: relative;
+  border-radius: 1.25rem;
+  border: 1px solid #2a2a2a;
+  background-color: #191919;
+  padding: 1.25rem;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(255, 107, 107, 0.08);
+}
+
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.5;
+}
+
+/* Lets a SpotlightCard wrap content that needs to bleed edge-to-edge (like a
+   poster image), while still keeping the same border/background/spotlight
+   language as every other card in the app. Two classes so it reliably beats
+   the base padding rule regardless of CSS load order. */
+.card-spotlight.card-spotlight--flush {
+  padding: 0;
+}

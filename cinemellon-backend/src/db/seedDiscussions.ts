@@ -1,0 +1,118 @@
+import { DiscussionThread } from "../types.js";
+
+/**
+ * Seeded once into the discussions table via `npm run seed`. Twelve entries
+ * (vs. the frontend mock's four) so /trending-discussions?page= can do
+ * ordinary offset pagination instead of the rotating-window trick the mock
+ * needed to fake more pages than it actually had data for.
+ */
+export const seedDiscussions: DiscussionThread[] = [
+  {
+    id: "d1",
+    title: "The tesseract scene is Nolan's most literal metaphor yet",
+    excerpt: "Revisiting how the five-dimensional library sequence turns an abstract physics idea into raw emotion.",
+    sourceName: "Letterboxd",
+    sourceUrl: "https://letterboxd.com",
+    commentCount: 342,
+    movieTitle: "Interstellar",
+  },
+  {
+    id: "d2",
+    title: "Why the Joker's origin story was never meant to be answered",
+    excerpt: "A closer look at how contradictory scar stories were written to deny the Joker any single truth.",
+    sourceName: "Reddit r/movies",
+    sourceUrl: "https://reddit.com/r/movies",
+    commentCount: 891,
+    movieTitle: "The Dark Knight",
+  },
+  {
+    id: "d3",
+    title: "Arrival's circular structure, five years later",
+    excerpt: "How the film's non-linear editing quietly trains the audience to think like a heptapod.",
+    sourceName: "RogerEbert.com",
+    sourceUrl: "https://rogerebert.com",
+    commentCount: 156,
+    movieTitle: "Arrival",
+  },
+  {
+    id: "d4",
+    title: "Does the top actually fall in Inception?",
+    excerpt: "A frame-by-frame debate about the final wobble, and why Nolan says the ambiguity is the point.",
+    sourceName: "IndieWire",
+    sourceUrl: "https://indiewire.com",
+    commentCount: 1204,
+    movieTitle: "Inception",
+  },
+  {
+    id: "d5",
+    title: "The corn fields were real, and it shows",
+    excerpt: "Why shooting practical crops instead of CGI quietly changes how Interstellar's Earth scenes feel.",
+    sourceName: "Film Comment",
+    sourceUrl: "https://www.filmcomment.com",
+    commentCount: 98,
+    movieTitle: "Interstellar",
+  },
+  {
+    id: "d6",
+    title: "Heath Ledger's Joker voice, explained by a dialect coach",
+    excerpt: "Breaking down the vocal choices behind the rasp, and how much of it was Ledger's own invention.",
+    sourceName: "Vulture",
+    sourceUrl: "https://www.vulture.com",
+    commentCount: 445,
+    movieTitle: "The Dark Knight",
+  },
+  {
+    id: "d7",
+    title: "The heptapod logograms were hand-drawn, not generated",
+    excerpt: "An interview thread on how each circular symbol was designed to have no true beginning or end.",
+    sourceName: "Reddit r/movies",
+    sourceUrl: "https://reddit.com/r/movies",
+    commentCount: 212,
+    movieTitle: "Arrival",
+  },
+  {
+    id: "d8",
+    title: "Ranking every 'we need to go deeper' meme, ten years on",
+    excerpt: "A surprisingly thorough oral history of how one line of dialogue became shorthand for scope creep.",
+    sourceName: "The Ringer",
+    sourceUrl: "https://www.theringer.com",
+    commentCount: 673,
+    movieTitle: "Inception",
+  },
+  {
+    id: "d9",
+    title: "Two-Face's coin only had one 'good' side the whole time",
+    excerpt: "A prop continuity thread that turned into a broader read on how the film foreshadows Harvey's fall.",
+    sourceName: "Letterboxd",
+    sourceUrl: "https://letterboxd.com",
+    commentCount: 331,
+    movieTitle: "The Dark Knight",
+  },
+  {
+    id: "d10",
+    title: "Kip Thorne's black hole math ended up in a real physics paper",
+    excerpt: "How Gargantua's rendering, built for accuracy rather than spectacle, fed back into actual research.",
+    sourceName: "RogerEbert.com",
+    sourceUrl: "https://rogerebert.com",
+    commentCount: 187,
+    movieTitle: "Interstellar",
+  },
+  {
+    id: "d11",
+    title: "Is Louise's choice at the end actually hopeful?",
+    excerpt: "A long-running argument over whether choosing a loss you can already see coming is comfort or tragedy.",
+    sourceName: "Film Comment",
+    sourceUrl: "https://www.filmcomment.com",
+    commentCount: 264,
+    movieTitle: "Arrival",
+  },
+  {
+    id: "d12",
+    title: "The hotel corridor fight, one shot at a time",
+    excerpt: "A shot-by-shot breakdown of the rotating practical set and how the choreography tracked the rig's spin.",
+    sourceName: "IndieWire",
+    sourceUrl: "https://indiewire.com",
+    commentCount: 512,
+    movieTitle: "Inception",
+  },
+];

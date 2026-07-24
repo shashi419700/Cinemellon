@@ -1,0 +1,171 @@
+.line-sidebar {
+  --accent-color: #ff6b6b;
+  --text-color: #a6a6aa;
+  --marker-color: #6e6e73;
+  --marker-length: 40px;
+  --marker-gap: 0px;
+  --tick-scale: 0.5;
+  --max-shift: 10px;
+  --item-gap: 18px;
+  --font-size: 0.95rem;
+  --smoothing: 100ms;
+
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.line-sidebar--markers {
+  padding-left: calc(var(--marker-length) + var(--marker-gap));
+}
+
+.line-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--item-gap);
+}
+
+.line-sidebar__item {
+  position: relative;
+  cursor: pointer;
+}
+
+.line-sidebar__item-wrapper {
+  display: block;
+}
+
+.line-sidebar__group-header {
+  display: block;
+  margin: 0 0 10px;
+  padding-top: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--marker-color);
+  opacity: 0.75;
+  user-select: none;
+}
+
+.line-sidebar__item-wrapper:first-child .line-sidebar__group-header {
+  padding-top: 0;
+}
+
+.line-sidebar__item::before {
+  content: "";
+  position: absolute;
+  inset: -6px -24px;
+}
+
+.line-sidebar__label {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--font-size);
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+  color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--text-color));
+  text-shadow: 0 0 calc(var(--effect, 0) * 8px)
+    color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 45%), transparent);
+  transform-origin: left center;
+  transform: translateX(calc(var(--effect, 0) * var(--max-shift))) scale(calc(1 + var(--effect, 0) * 0.08));
+}
+
+.line-sidebar__index {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin-right: 0.6rem;
+  font-size: 0.8em;
+  opacity: calc(0.55 + var(--effect, 0) * 0.45);
+}
+
+.line-sidebar__marker {
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  height: 1px;
+  width: var(--marker-length);
+  background-color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color));
+  box-shadow: 0 0 calc(var(--effect, 0) * 5px)
+    color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 50%), transparent);
+  transform-origin: left center;
+  transform: translateY(-50%) scaleX(calc(0.7 + var(--effect, 0) * 0.5));
+}
+
+.line-sidebar--markers .line-sidebar__item-wrapper:not(:last-child) .line-sidebar__item::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + var(--item-gap) / 2);
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  height: 1px;
+  width: calc(var(--marker-length) * var(--tick-scale));
+  background-color: var(--marker-color);
+  opacity: 0.5;
+  transform: translateY(-50%);
+}
+
+.line-sidebar--scale-tick .line-sidebar__item-wrapper:not(:last-child) .line-sidebar__item::after {
+  transform-origin: left center;
+  transform: translateY(-50%) scaleX(calc(0.7 + var(--effect, 0) * 0.6));
+}
+
+/* Guaranteed active-state feedback — independent of the JS-driven --effect
+   pipeline above, so the pop/color/glow always fires the instant React
+   marks an item active, with no dependency on rAF timing. */
+.line-sidebar__item--active .line-sidebar__label {
+  color: var(--accent-color) !important;
+  text-shadow: 0 0 8px color-mix(in srgb, var(--accent-color) 45%, transparent) !important;
+  transform: translateX(var(--max-shift)) scale(1.08) !important;
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.line-sidebar__item--active .line-sidebar__marker {
+  background-color: var(--accent-color) !important;
+  box-shadow: 0 0 5px color-mix(in srgb, var(--accent-color) 50%, transparent) !important;
+  transform: translateY(-50%) scaleX(1.1) !important;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.line-sidebar__item:not(.line-sidebar__item--active) .line-sidebar__label,
+.line-sidebar__item:not(.line-sidebar__item--active) .line-sidebar__marker {
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* A dim, minimal scrollbar for the sidebar's own scroll container — the
+   default browser scrollbar reads as too heavy sitting right next to the
+   nav text. Firefox via scrollbar-color, WebKit/Blink via the pseudo-elements. */
+.line-sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.line-sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.line-sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.line-sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+.line-sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
