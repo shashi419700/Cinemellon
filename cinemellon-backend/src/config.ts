@@ -7,7 +7,7 @@ function readOptional(name: string): string | undefined {
 
 export const config = {
   port: Number(readOptional("PORT") ?? 4000),
-  corsOrigin: (readOptional("CORS_ORIGIN") ?? "http://localhost:5173")
+  corsOrigin: (readOptional("CORS_ORIGIN") ?? "http://localhost:5173,https://cinemellon-beryl.vercel.app")
     .split(",")
     .map((s) => s.trim().replace(/\/+$/, "")), // strip trailing slash(es): the browser's Origin header never has one, so a stray slash here would otherwise silently fail every CORS check
   databasePath: readOptional("DATABASE_PATH") ?? "./data/cinemellon.db",
